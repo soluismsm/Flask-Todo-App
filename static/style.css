@@ -1,0 +1,34 @@
+body {
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  background-color: rgb(240, 240, 240);
+}
+
+.submit-button {
+  border-radius: 3px;
+  /* border-width: 0px; */
+  padding-left: 20px;
+  padding-right: 20px;
+  cursor: pointer;
+}
+
+.block {
+  margin: auto;
+  width: 50%;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 1rem;
+}
+
+.center {
+  text-align: center;
+  list-style-position: inside;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.l-button {
+  background-color: #fff;
+  color: #c468e8;
+  text-decoration: none;
+}
