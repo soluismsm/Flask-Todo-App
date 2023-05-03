@@ -20,19 +20,28 @@
     <div class="block">
       <form action="add" method="post">
         {{ form.title.label }}
-        {{ form.title(size=20) }}
+        {{ form.title(size=20, maxlength=50) }}
         {{ form.submit(class="submit-button") }}
       </form>
+
       <ol class="center">
         {% for todo in todos %}
         <li>
           {% if todo.complete %}
-          <s>{{ todo.title }}</s>
+          <p class="todo">
+            <s>{{ todo.title }}</s>
+          </p>
           {% else %}
-          {{ todo.title }}
+          <p class="todo">{{ todo.title }}</p>
           {% endif %}
-          <a class="l-button" href="/delete/{{ todo.id }}">Delete</a>
-          <a class="l-button" href="/update/{{ todo.id }}">Update</a>
+          <div class="button-container">
+            <form class="form-todo" action="delete/{{ todo.id }}" method="post">
+              <button class="l-button" type="submit">Delete</button>
+            </form>
+            <form class="form-todo" action="update/{{ todo.id }}" method="post">
+              <button class="l-button" type="submit">Update</button>
+            </form>
+          </div>
         </li>
         {% endfor %}
       </ol>

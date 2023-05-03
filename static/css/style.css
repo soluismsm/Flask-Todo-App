@@ -1,6 +1,5 @@
 body {
   font-family: "Montserrat", sans-serif;
-  text-align: center;
   background-image: url("../images/bg.jpg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -9,6 +8,7 @@ body {
 .todo-title {
   font-size: 50px;
   font-weight: bold;
+  text-align: center;
   color: #c468e8;
   -webkit-text-stroke-color: #8e42ac;
   -webkit-text-stroke-width: 0.2px;
@@ -32,9 +32,10 @@ body {
 }
 
 .block {
+  text-align: center;
   margin: auto;
-  width: 40%;
-  padding: 2rem;
+  width: 60%;
+  padding: 1.5rem;
   background-color: #fff;
   border-radius: 1rem;
 }
@@ -42,8 +43,8 @@ body {
 .center {
   text-align: center;
   list-style-position: inside;
-  padding-left: 10%;
-  padding-right: 10%;
+  padding-left: 5%;
+  padding-right: 5%;
 }
 
 .l-button {
@@ -62,6 +63,42 @@ body {
   background-color: #8e42ac;
 }
 
+ol {
+  background-color: rgb(230, 230, 230);
+  border-radius: 10px;
+}
+
 li {
   margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.todo {
+  width: fit-content;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.form-todo {
+  width: fit-content;
+  align-items: center;
+  white-space: nowrap;
+  display: flex;
+}
+
+.button-container {
+  display: flex;
+}
+
+.button-container form {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.button-container form:last-child {
+  margin-right: 0;
 }

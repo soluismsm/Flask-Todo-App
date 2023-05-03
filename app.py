@@ -29,28 +29,32 @@ def index():
 
 @app.route("/add", methods=["POST"])
 def add():
-    todo = Todo(title=request.form["title"], complete=False)
-    db.session.add(todo)
-    db.session.commit()
+    form = TodoForm(request.form)
+    if request.method == "POST" and form.validate():
+        todo = Todo(title=request.form["title"], complete=False)
+        db.session.add(todo)
+        db.session.commit()
     return redirect("/")
 
 
-@app.route("/delete/<int:todo_id>")
+@app.route("/delete/<int:todo_id>", methods=["POST"])
 def delete(todo_id):
-    todo = Todo.query.get_or_404(todo_id)
-    db.session.delete(todo)
-    db.session.commit()
+    if request.method == "POST":
+        todo = Todo.query.get_or_404(todo_id)
+        db.session.delete(todo)
+        db.session.commit()
     return redirect("/")
 
 
-@app.route("/update/<int:todo_id>")
+@app.route("/update/<int:todo_id>", methods=["POST"])
 def update(todo_id):
-    todo = Todo.query.get_or_404(todo_id)
-    if todo.complete:
-        todo.complete = False
-    else:
-        todo.complete = True
-    db.session.commit()
+    if request.method == "POST":
+        todo = Todo.query.get_or_404(todo_id)
+        if todo.complete:
+            todo.complete = False
+        else:
+            todo.complete = True
+        db.session.commit()
     return redirect("/")
 
 
