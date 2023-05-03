@@ -1,0 +1,67 @@
+body {
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  background-image: url("../images/bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.todo-title {
+  font-size: 50px;
+  font-weight: bold;
+  color: #c468e8;
+  -webkit-text-stroke-color: #8e42ac;
+  -webkit-text-stroke-width: 0.2px;
+}
+
+.submit-button {
+  background-color: #c468e8;
+  border-color: #8e42ac;
+  border-radius: 5px;
+  border-width: 1px;
+  color: #fff;
+  cursor: pointer;
+  padding-left: 20px;
+  padding-right: 20px;
+  transition: 0.2s;
+  padding: 4px 20px;
+}
+
+.submit-button:hover {
+  background-color: #8e42ac;
+}
+
+.block {
+  margin: auto;
+  width: 40%;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 1rem;
+}
+
+.center {
+  text-align: center;
+  list-style-position: inside;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.l-button {
+  background-color: #c468e8;
+  border-color: #8e42ac;
+  border-radius: 5px;
+  border-width: 1px;
+  color: #fff;
+  cursor: pointer;
+  padding: 2px 20px;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.l-button:hover {
+  background-color: #8e42ac;
+}
+
+li {
+  margin-bottom: 10px;
+}

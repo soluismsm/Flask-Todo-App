@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
+from wtforms import Form, StringField, SubmitField
+from wtforms.validators import InputRequired
 
 db = SQLAlchemy()
 app = Flask(__name__)
@@ -14,10 +16,15 @@ class Todo(db.Model):
     complete = db.Column(db.Boolean)
 
 
+class TodoForm(Form):
+    title = StringField("What needs to be done?", [InputRequired()])
+    submit = SubmitField("Add")
+
+
 @app.route("/")
 def index():
     todos = Todo.query.all()
-    return render_template("index.html", todos=todos)
+    return render_template("index.html", todos=todos, form=TodoForm())
 
 
 @app.route("/add", methods=["POST"])

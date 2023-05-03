@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="static/style.css">
+  <link rel="stylesheet" href="static/css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
@@ -19,9 +19,9 @@
   <main>
     <div class="block">
       <form action="add" method="post">
-        <label for="title">Todo Title</label>
-        <input type="text" name="title" id="title" required="required">
-        <button class="submit-button" type="submit">Add</button>
+        {{ form.title.label }}
+        {{ form.title(size=20) }}
+        {{ form.submit(class="submit-button") }}
       </form>
       <ol class="center">
         {% for todo in todos %}
