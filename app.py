@@ -1,50 +1,53 @@
 from flask import Flask, render_template, request, redirect
+from flask_sqlalchemy import SQLAlchemy
 
+db = SQLAlchemy()
 app = Flask(__name__)
 app.config.from_object("config")
 
-
-class Todo:
-    def __init__(self, title, done=False):
-        self.title = title
-        self.done = done
+db.init_app(app)
 
 
-todo_list = []
+class Todo(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    title = db.Column(db.Text(100))
+    complete = db.Column(db.Boolean)
 
 
 @app.route("/")
 def index():
-    global todo_list
-    return render_template("index.html", todos=todo_list)
+    todos = Todo.query.all()
+    return render_template("index.html", todos=todos)
 
 
 @app.route("/add", methods=["POST"])
 def add():
-    global todo_list
-    todo_title = request.form["title"]
-    todo = Todo(todo_title, False)
-    todo_list.append(todo)
+    todo = Todo(title=request.form["title"], complete=False)
+    db.session.add(todo)
+    db.session.commit()
     return redirect("/")
 
 
 @app.route("/delete/<int:todo_id>")
 def delete(todo_id):
-    global todo_list
-    todo_list.pop(todo_id)
+    todo = Todo.query.get_or_404(todo_id)
+    db.session.delete(todo)
+    db.session.commit()
     return redirect("/")
 
 
 @app.route("/update/<int:todo_id>")
 def update(todo_id):
-    global todo_list
-    todo = todo_list[todo_id]
-    if todo.done:
-        todo.done = False
+    todo = Todo.query.get_or_404(todo_id)
+    if todo.complete:
+        todo.complete = False
     else:
-        todo.done = True
+        todo.complete = True
+    db.session.commit()
     return redirect("/")
 
 
 if __name__ == "__main__":
+    with app.app_context():
+        db.create_all()
     app.run()
