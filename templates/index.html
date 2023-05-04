@@ -35,11 +35,11 @@
           <p class="todo">{{ todo.title }}</p>
           {% endif %}
           <div class="button-container">
-            <form class="form-todo" action="delete/{{ todo.id }}" method="post">
-              <button class="l-button" type="submit">Delete</button>
-            </form>
             <form class="form-todo" action="update/{{ todo.id }}" method="post">
               <button class="l-button" type="submit">Update</button>
+            </form>
+            <form class="form-todo" action="delete/{{ todo.id }}" method="post">
+              <button class="l-button" type="submit">Delete</button>
             </form>
           </div>
         </li>

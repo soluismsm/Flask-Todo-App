@@ -1,19 +1,13 @@
 from flask import Flask, render_template, request, redirect
-from flask_sqlalchemy import SQLAlchemy
 from wtforms import Form, StringField, SubmitField
 from wtforms.validators import InputRequired
+from models import db, Todo
 
-db = SQLAlchemy()
-app = Flask(__name__)
+app = Flask(__name__, instance_relative_config=True)
 app.config.from_object("config")
+app.config.from_pyfile("config.py")
 
 db.init_app(app)
-
-
-class Todo(db.Model):
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    title = db.Column(db.Text(100))
-    complete = db.Column(db.Boolean)
 
 
 class TodoForm(Form):
